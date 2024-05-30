@@ -12,17 +12,21 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {IconButton} from '@mui/material';
 import dayjs from 'dayjs';
-
+import Cookies from "js-cookie"
 
 // function createData(name, calories, fat, carbs, protein) {
 //     return { name, calories, fat, carbs, protein };
 // }
 
 export default function TransList({ transactions,fetchTransactions, setEditTransaction}) {
+    const token=Cookies.get("token")
     async function remove(_id){
         if(!window.confirm("Are you sure?")) return;
         const res=await fetch(`http://localhost:3000/transaction/${_id}`,{
-            method:"DELETE"
+            method:"DELETE",
+            headers:{
+                "Authorization":`Bearer ${token}`
+            }
         })
         if(res.ok){
             fetchTransactions();

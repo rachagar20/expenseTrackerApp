@@ -9,7 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import Button from '@mui/material/Button';
 import dayjs from 'dayjs';
-
+import Cookies from "js-cookie"
 const initialFormState = {
     amount: 0,
     description: "",
@@ -18,7 +18,7 @@ const initialFormState = {
 
 export default function TransForm({fetchTransactions,editTransaction,setEditTransaction}) {
     const [form, setForm] = useState(initialFormState);
-
+    const token=Cookies.get("token")
     useEffect(()=>{
         if(Object.keys(editTransaction).length!==0){
             setForm({
@@ -32,7 +32,8 @@ export default function TransForm({fetchTransactions,editTransaction,setEditTran
             method: "PATCH",
             body: JSON.stringify(form),
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "Authorization":`Bearer ${token}`
             }
         })
         return res;
@@ -42,7 +43,9 @@ export default function TransForm({fetchTransactions,editTransaction,setEditTran
             method: "POST",
             body: JSON.stringify(form),
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "Authorization":`Bearer ${token}`
+
             }
         })
         const data=await res.json();

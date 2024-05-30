@@ -10,6 +10,9 @@ const transactionSchema=new mongoose.Schema({
     date:{
         type:Date,
         default:new Date()
+    },
+    user_id:{
+        type:mongoose.Types.ObjectId
     }
 },{timestamps:true})
 
