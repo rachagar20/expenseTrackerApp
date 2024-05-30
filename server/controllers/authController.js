@@ -1,6 +1,14 @@
 import {User }from "../model/user_model.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+
+const categories = [
+        {label: "Travel",icon:"user" },
+        {label:"Investment",icon:"user" },
+        {label:"Fun",icon:"user" },
+        {label:"Miscellaneous",icon:"user" }
+];
+
 export const registerUser=async (req,res)=>{
     const {email,password,firstName,lastName}=req.body;
     const user=await User.findOne({email});
@@ -12,7 +20,7 @@ export const registerUser=async (req,res)=>{
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
     console.log(hashedPassword)
-    const createdUser=await User.create({email,password:hashedPassword,firstName,lastName});
+    const createdUser=await User.create({email,password:hashedPassword,firstName,lastName,categories});
     res.status(201).json({message:
         "User is created Successfully."
     })

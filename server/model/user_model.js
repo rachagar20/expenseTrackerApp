@@ -16,7 +16,13 @@ const userSchema=new mongoose.Schema({
     password:{
         type:String, 
         required:[true,"Password is a required Field"]
-    }
+    },
+    categories:[
+        {
+            label:String,
+            icon:String 
+        }
+    ]
 
 },{timestamps:true})
 

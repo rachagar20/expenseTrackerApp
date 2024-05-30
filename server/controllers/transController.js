@@ -7,7 +7,7 @@ export const getTransactionDetails=async(req,res)=>{
 
 export const createTransaction=async (req,res)=>{
     const {amount,description,date}=req.body;
-    await Transaction.create({amount,description,date,user_id:req.user.id});
+    await Transaction.create({amount,description,date,user_id:req.user.id,category_id:req.body.category_id});
     res.status(200).json({message:"SUCCESS"});
 }
 

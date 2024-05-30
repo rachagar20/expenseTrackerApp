@@ -13,6 +13,9 @@ const transactionSchema=new mongoose.Schema({
     },
     user_id:{
         type:mongoose.Types.ObjectId
+    },
+    category_id:{
+        type:mongoose.Types.ObjectId
     }
 },{timestamps:true})
 

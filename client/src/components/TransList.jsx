@@ -13,13 +13,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {IconButton} from '@mui/material';
 import dayjs from 'dayjs';
 import Cookies from "js-cookie"
+import { useSelector } from 'react-redux';
 
-// function createData(name, calories, fat, carbs, protein) {
-//     return { name, calories, fat, carbs, protein };
-// }
 
 export default function TransList({ transactions,fetchTransactions, setEditTransaction}) {
     const token=Cookies.get("token")
+    const user=useSelector((state)=>state.auth.user)
     async function remove(_id){
         if(!window.confirm("Are you sure?")) return;
         const res=await fetch(`http://localhost:3000/transaction/${_id}`,{
@@ -35,6 +34,12 @@ export default function TransList({ transactions,fetchTransactions, setEditTrans
     function formatDate(date){
         return dayjs(date).format("DD MMM YYYY")
     }
+    function getNameById(category_id){
+        const category =user.categories?.find((eachCategoryObject)=>category_id===eachCategoryObject._id)
+
+        return category?category.label:"NA"
+        
+    }
     return (
         <>
             <Typography variant="h6" sx={{ marginTop: 10 }}>
@@ -46,6 +51,7 @@ export default function TransList({ transactions,fetchTransactions, setEditTrans
                         <TableRow>
                             <TableCell align='center'>Amount</TableCell>
                             <TableCell align="center">Description</TableCell>
+                            <TableCell align="center">Category</TableCell>
                             <TableCell align="center">Transaction Date</TableCell>
                             <TableCell align="center">Action</TableCell>
                         </TableRow>
@@ -60,6 +66,7 @@ export default function TransList({ transactions,fetchTransactions, setEditTrans
                                     {row.amount}
                                 </TableCell>
                                 <TableCell align="center">{row.description}</TableCell>
+                                <TableCell align="center">{getNameById(row.category_id)}</TableCell>
                                 <TableCell align="center">{formatDate(row.date)}</TableCell>
                                 <TableCell align="center">
                                     <IconButton color="primary" component="label" onClick={()=>{setEditTransaction(row)}}>
