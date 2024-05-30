@@ -34,6 +34,13 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
         }
     }, [editTransaction]);
 
+    async function reload(res){
+        if(res.ok){
+            fetchTransactions();
+            setForm(initialFormState)
+        }
+    }
+
     async function update() {
         const res = await fetch(`http://localhost:3000/transaction/${editTransaction._id}`, {
             method: "PATCH",
@@ -43,7 +50,7 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
                 "Authorization": `Bearer ${token}`
             }
         });
-        return res;
+        reload(res);
     }
 
     async function create() {
@@ -55,19 +62,12 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
                 "Authorization": `Bearer ${token}`
             }
         });
-        const data = await res.json();
-        console.log(data);
-        return data;
+        reload(res);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = Object.keys(editTransaction).length === 0 ? await create() : await update();
-        if (res.ok) {
-            fetchTransactions();
-            setForm(initialFormState);
-            setEditTransaction({});
-        }
     };
 
     function handleDate(value) {

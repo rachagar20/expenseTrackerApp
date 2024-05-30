@@ -5,6 +5,7 @@ import Login from "./pages/Login.jsx"
 import Guest from "./utils/Guest.jsx"
 import RegisterUser from "./pages/RegisterUser.jsx"
 import CheckAuth from "./utils/CheckAuth.jsx"
+import Category from './pages/Category.jsx'
 import {createBrowserRouter,Navigate} from "react-router-dom"
 import Cookies from "js-cookie"
 const token=Cookies.get("token")
@@ -25,6 +26,9 @@ const router = createBrowserRouter([
         },{
             path:"/register",
             element: <Guest><RegisterUser/></Guest>
+        },{
+          path:"/category",
+          element:<CheckAuth><Category/></CheckAuth>
         }
       ]
     },

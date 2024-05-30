@@ -27,6 +27,9 @@ export default function ButtonAppBar() {
               Expense Tracker
             </Link>
           </Typography>
+          <Link to="/category" className="textWhite">
+                <Button color="inherit">Category</Button>
+          </Link>
           {
             auth.isAuthorized && <Button color="inherit" onClick={logout}>LOGOUT</Button>
           }
