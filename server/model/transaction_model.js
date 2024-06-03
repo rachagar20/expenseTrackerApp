@@ -16,6 +16,9 @@ const transactionSchema=new mongoose.Schema({
     },
     category_id:{
         type:mongoose.Types.ObjectId
+    },
+    typeOfTrans:{
+        type:String,
     }
 },{timestamps:true})
 

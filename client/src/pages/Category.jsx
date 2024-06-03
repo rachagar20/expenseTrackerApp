@@ -44,7 +44,7 @@ export default function Category() {
             <Typography variant="h6" sx={{ marginTop: 10 }}>
                 List Of Categories
             </Typography>
-            <TableContainer component={Paper} sx={{ marginTop: 10 }}>
+            <TableContainer sx={{ marginTop: 10,border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#FCF6F9"}} component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>

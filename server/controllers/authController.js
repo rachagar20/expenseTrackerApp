@@ -31,12 +31,12 @@ export const loginUser=async(req,res)=>{
 
     const user=await User.findOne({email});
     if(user===null){
-        return res.status(406).json({message:"USER DOES NOT EXIST"})
+        return res.status(406).json({message:"User does not exist."})
     }
     const isCorrect=bcrypt.compareSync(password, user.password);
 
     if(!isCorrect){
-        return res.status(406).json({message:"Password is Incorrect"})
+        return res.status(406).json({message:"User Credentials do not match!!"})
 
     }
 

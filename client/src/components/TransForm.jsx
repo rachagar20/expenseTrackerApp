@@ -4,24 +4,28 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import { Box, Grid } from '@mui/material';
+import { Box, FormControlLabel, Grid } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import Button from '@mui/material/Button';
 import Autocomplete from '@mui/material/Autocomplete';
 import dayjs from 'dayjs';
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux"
 import Cookies from "js-cookie";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+
 
 const initialFormState = {
-    amount: 0,
+    amount: "",
     description: "",
     date: null,
-    category_id: ''
+    category_id: '',
+    type:'expense'
 };
 export default function TransForm({ fetchTransactions, editTransaction, setEditTransaction }) {
-    const user=useSelector((state)=>state.auth.user)
+    const user = useSelector((state) => state.auth.user)
     const [form, setForm] = useState(initialFormState);
     const token = Cookies.get("token");
 
@@ -34,8 +38,8 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
         }
     }, [editTransaction]);
 
-    async function reload(res){
-        if(res.ok){
+    async function reload(res) {
+        if (res.ok) {
             fetchTransactions();
             setForm(initialFormState)
         }
@@ -78,13 +82,21 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    function getNameById(category_id){
-        user.categories.map((eachCategoryObject)=>{
-            if(eachCategoryObject._id===category_id) return eachCategoryObject.label;
+    function getNameById(category_id) {
+        user.categories.map((eachCategoryObject) => {
+            if (eachCategoryObject._id === category_id) return eachCategoryObject.label;
         })
     }
+    function handleRadio(e){
+        if(e.target.value){setForm({...form,type:e.target.value})}
+        else {setForm({...form,type:"expense"})}
+    }
     return (
-        <Card variant="outlined" sx={{ marginTop: 10 }}>
+        <Card variant="outlined" sx={{
+            marginTop: 10, border: '2px solid #FFFFFF',
+            boxShadow:"0px 1px 15px rgba(5, 5, 5, 0.15)",
+            borderRadius: '12px', background: "#FCF6F9",
+        }}>
             <React.Fragment>
                 <CardContent>
                     <Typography variant="h6" align="center" gutterBottom>
@@ -115,7 +127,7 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
                             <Grid item xs>
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DesktopDatePicker
-                                        label="Transaction Date"
+                                        label="Date"
                                         inputFormat="MM/DD/YYYY"
                                         value={form.date}
                                         onChange={handleDate}
@@ -127,11 +139,22 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
                                 <Autocomplete
                                     value={getNameById(form.category_id)}
                                     onChange={(event, newValue) => {
-                                        setForm({ ...form, category_id:newValue._id });
+                                        setForm({ ...form, category_id: newValue._id });
                                     }}
                                     options={user.categories}
                                     renderInput={(params) => <TextField {...params} label="Category" fullWidth />}
                                 />
+                            </Grid>
+                            <Grid item xs>
+                                <RadioGroup
+                                    aria-labelledby="demo-controlled-radio-buttons-group"
+                                    name="controlled-radio-buttons-group"
+                                    onChange={handleRadio}
+                                    sx={{  }}
+                                >
+                                    <FormControlLabel value="income" control={<Radio />} label="Income" />
+                                    <FormControlLabel value="expense" control={<Radio />} label="Expense" />
+                                </RadioGroup>
                             </Grid>
                             <Grid item>
                                 <Button

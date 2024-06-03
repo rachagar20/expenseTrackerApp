@@ -4,11 +4,17 @@ import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import AppBar from "./components/ButtonAppBar";
 import { getUser } from "./slice/authSlice.js";
+import { useLocation } from 'react-router-dom';
+import backgroundImage from '../public/Untitled.jpeg';
 
 function App() {
   const token = Cookies.get("token");
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  // Check if the current route is '/login' or '/register'
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
 
   async function fetchUser() {
     setIsLoading(true);
@@ -35,10 +41,10 @@ function App() {
   }
 
   return (
-    <>
+    <div  className={isAuthPage ? 'background-image' : ''}>
       <AppBar />
       <Outlet />
-    </>
+    </div>
   );
 }
 

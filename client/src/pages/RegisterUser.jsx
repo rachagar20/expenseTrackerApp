@@ -11,7 +11,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Cookies from "js-cookie"
+import { ToastContainer,toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -41,18 +44,25 @@ function SignUp() {
           "content-type": "application/json"
         }
     })
-
-    const {token}=await res.json();
+    const notify=(message)=>{
+      toast.error(message,{
+        position:"top-center"
+      })
+    }
+    const {token,message}=await res.json();
     if(res.ok){
       Cookies.set("token",token);
-      navigate("/login")
+      navigate("/login",{ state: { fromRegister:true } })
       console.log("USER CREATED");
+    }else{
+      notify(message)
     }
   };
 
   return (
       <Container component="main" maxWidth="xs" >
         <CssBaseline />
+        <ToastContainer/>
         <Box
           sx={{
             marginTop: 8,

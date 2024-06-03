@@ -8,6 +8,7 @@ import CheckAuth from "./utils/CheckAuth.jsx"
 import Category from './pages/Category.jsx'
 import {createBrowserRouter,Navigate} from "react-router-dom"
 import Cookies from "js-cookie"
+import Chart from './pages/Chart.jsx'
 const token=Cookies.get("token")
 console.log(token)
 const router = createBrowserRouter([
@@ -29,6 +30,9 @@ const router = createBrowserRouter([
         },{
           path:"/category",
           element:<CheckAuth><Category/></CheckAuth>
+        },{
+          path:"/analysis",
+          element:<CheckAuth><Chart/></CheckAuth>
         }
       ]
     },
