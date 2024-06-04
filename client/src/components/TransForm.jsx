@@ -95,11 +95,11 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
         <Card variant="outlined" sx={{
             marginTop: 10, border: '2px solid #FFFFFF',
             boxShadow:"0px 1px 15px rgba(5, 5, 5, 0.15)",
-            borderRadius: '12px', background: "#FCF6F9",
+            borderRadius: '12px', background: "#f7f9fc",
         }}>
             <React.Fragment>
                 <CardContent>
-                    <Typography variant="h6" align="center" gutterBottom>
+                    <Typography variant="h6" className="text" align="center" gutterBottom>
                         ADD A NEW TRANSACTION
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit}>

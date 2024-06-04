@@ -16,40 +16,27 @@ import Cookies from "js-cookie"
 import { useSelector } from 'react-redux';
 
 
-export default function TransList({fetchTransactions, setEditTransaction }) {
+export default function TransListDash({transactions}) {
     const token = Cookies.get("token")
     const user = useSelector((state) => state.auth.user)
-    const transactions=useSelector((state)=>state.trans.transactionDetail);
     console.log(transactions)
-    async function remove(_id) {
-        if (!window.confirm("Are you sure?")) return;
-        const res = await fetch(`http://localhost:3000/transaction/${_id}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        })
-        if (res.ok) {
-            fetchTransactions();
-        }
-    }
     function formatDate(date) {
         return dayjs(date).format("DD MMM YYYY")
     }
     function getNameById(category_id) {
         const category = user?.categories?.find((eachCategoryObject) => category_id === eachCategoryObject._id)
-
         return category ? category.label : "--"
 
     }
+    console.log(new Date(transactions[0]?.updatedAt))
+    const newTransactions=transactions.filter(transaction => transaction.updatedAt || transaction.createdAt).sort((a,b)=>new Date(b?.updatedAt)-new Date(a?.updatedAt)).slice(0,5)
+    console.log(newTransactions)
     return (
         <>
-            <Typography variant="h6" className="text" sx={{ marginTop: 10, textAlign: "center"}}>
-                LIST OF ALL TRANSACTIONS
-            </Typography>
-            <TableContainer component={Paper} sx={{ marginTop: 5, borderRadius: "20px",border: '2px solid #FFFFFF',
+
+            <TableContainer component={Paper} sx={{  borderRadius: "20px",border: '2px solid #FFFFFF',
             boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)",
-            borderRadius: '12px', background: "#f7f9fc",marginBottom:5 }}>
+            borderRadius: '12px', background: "#f7f9fc" }}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -57,11 +44,10 @@ export default function TransList({fetchTransactions, setEditTransaction }) {
                             <TableCell align="center"><Typography className="text">Description</Typography></TableCell>
                             <TableCell align="center"><Typography className="text">Category</Typography></TableCell>
                             <TableCell align="center"><Typography className="text">Date</Typography></TableCell>
-                            <TableCell align="center"><Typography className="text">Action</Typography></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {transactions.map((row) => (
+                        {newTransactions.map((row) => (
                             <TableRow
                                 key={row._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -85,14 +71,6 @@ export default function TransList({fetchTransactions, setEditTransaction }) {
                                     <Typography style={{ color: row.typeOfTrans === 'income' ? 'rgb(92, 212, 92)' : 'rgb(226, 64, 64)' }}>
                                         {formatDate(row.date)}
                                     </Typography>
-                                </TableCell>
-                                <TableCell align="center">
-                                    <IconButton color="primary" component="label" onClick={() => { setEditTransaction(row) }}>
-                                        <EditIcon />
-                                    </IconButton>
-                                    <IconButton color="warning" aria-label="delete" onClick={() => { remove(row._id) }}>
-                                        <DeleteIcon />
-                                    </IconButton>
                                 </TableCell>
                             </TableRow>
                         ))}

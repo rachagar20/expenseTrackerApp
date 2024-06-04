@@ -70,7 +70,7 @@ const BarChart = ({ transactionDetails }) => {
         plugins: {
             title: {
                 display: true,
-                text: 'Income and Expense per Month',
+                text: 'INCOME AND EXPENSES PER MONTH',
                 font: {
                     size: 18,
                     weight: 'bold',
@@ -97,7 +97,7 @@ const BarChart = ({ transactionDetails }) => {
 
     return (
         <Box sx={{ width: "90%", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-            <Card sx={{ marginTop: 10, border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#FCF6F9", width: "90%" }}>
+            <Card sx={{ marginTop: 10, border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc", width: "90%" }}>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs>
                         <Bar options={options} data={barChartData} />

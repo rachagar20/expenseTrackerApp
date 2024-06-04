@@ -12,7 +12,6 @@ const categories = [
 export const registerUser=async (req,res)=>{
     const {email,password,firstName,lastName}=req.body;
     const user=await User.findOne({email});
-    console.log(user);
     if(user!==null){
         return res.status(406).json({message:"User Already Exists"})
     }

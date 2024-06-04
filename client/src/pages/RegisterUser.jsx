@@ -19,7 +19,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-        ExpenseTracker
+      MyExpensePilot
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -60,7 +60,7 @@ function SignUp() {
   };
 
   return (
-      <Container component="main" maxWidth="xs" >
+      <Container component="main" className="background-image" maxWidth="xs" sx={{paddingTop:"5%"}} >
         <CssBaseline />
         <ToastContainer/>
         <Box

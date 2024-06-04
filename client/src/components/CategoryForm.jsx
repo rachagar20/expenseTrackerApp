@@ -50,9 +50,6 @@ export default function CategoryForm({setEditCategory,editCategory}) {
             }
         });
         reload(res);
-        // if(res.ok){
-        //     setEditCategory({})
-        // }
     }
 
     async function create() {
@@ -78,10 +75,10 @@ export default function CategoryForm({setEditCategory,editCategory}) {
     };
 
     return (
-        <Card variant="outlined" sx={{  marginTop: 10,border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#FCF6F9" }}>
+        <Card variant="outlined" sx={{  marginTop: 15,border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc" }}>
             <React.Fragment>
                 <CardContent>
-                    <Typography variant="h6" align="center" gutterBottom>
+                    <Typography className="text" variant="h6" align="center" gutterBottom>
                         ADD A NEW CATEGORY
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit}>

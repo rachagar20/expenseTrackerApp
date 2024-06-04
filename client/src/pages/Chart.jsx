@@ -38,7 +38,7 @@ const Chart = () => {
           notify();
         } 
     }, [])
-    return  <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    return  <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',marginBottom:5 }}>
           <ToastContainer/>
 
     <LineChart transactionDetails={transactionDetails}/>
@@ -47,4 +47,4 @@ const Chart = () => {
     </Container>
 }
 
-export default Chart;
+export default Chart

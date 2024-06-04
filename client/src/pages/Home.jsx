@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TransForm from '../components/TransForm.jsx';
 import TransList from '../components/TransList.jsx';
-import Info from '../components/Info.jsx';
 import Cookies from "js-cookie";
 import { setTransaction } from '../slice/transSlice.js';
 import { useSelector,useDispatch } from 'react-redux';
@@ -38,11 +37,10 @@ const Home = () => {
   }
 
   return (
-    <Container>
-      <Info totalValues={totalValues}/>
-      <TransForm fetchTransactions={fetchTransactions} editTransaction={editTransaction} setEditTransaction={setEditTransaction} />
-      <TransList  fetchTransactions={fetchTransactions} setEditTransaction={setEditTransaction} />
-    </Container>
+    <div ><Container sx={{marginTop:20}}>
+    <TransForm fetchTransactions={fetchTransactions} editTransaction={editTransaction} setEditTransaction={setEditTransaction} />
+  <TransList  fetchTransactions={fetchTransactions} setEditTransaction={setEditTransaction} />
+</Container></div>
   );
 }
 

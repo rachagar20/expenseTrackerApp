@@ -1,27 +1,39 @@
-body {
-    background-color: #FCF6F9;
+html{
     height:100%
 }
-html{
+body{
     height:100%
 }
 #root{
     height:100%;
+    width: 100%;
+    
 }
 .text{
-    color:rgb(62, 155, 255);
+    color:#3f51b5;
 }
 .background-image{
-    background-image: url('../public/Untitled.jpeg');
-    background-size: cover; /* Adjusts the size of the background image to cover the entire container */
+    width:100%;
+    background-image: url('../public/Untitled.png');
+    background-size: cover; 
     background-position: center; /* Centers the background image */
     height:100%;
     background-repeat: no-repeat;
-    background-size: 60%;
+    background-size: 90%;
 }
-
-
+.textColor {
+    color: rgb(25, 118, 210);    ;
+    text-decoration: none;
+}
+.main{
+   height:100%
+    
+}
 .textWhite {
     color: white;
+    text-decoration: none;
+}
+.textBlack {
+    color: blue;
     text-decoration: none;
 }

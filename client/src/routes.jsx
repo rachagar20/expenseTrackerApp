@@ -8,7 +8,11 @@ import CheckAuth from "./utils/CheckAuth.jsx"
 import Category from './pages/Category.jsx'
 import {createBrowserRouter,Navigate} from "react-router-dom"
 import Cookies from "js-cookie"
+import LandingPage from './components/main/Landing.jsx'
 import Chart from './pages/Chart.jsx'
+import Dashboard from './pages/DashBoard'
+import  ButtonAppBar  from './components/ButtonAppBar.jsx'
+import AppBar from './components/AppBar.jsx'
 const token=Cookies.get("token")
 console.log(token)
 const router = createBrowserRouter([
@@ -16,23 +20,31 @@ const router = createBrowserRouter([
       element: <App />,
       children: [
         {
-            path: "/",
+          path:"/",
+          element:<LandingPage/>
+        },
+        {
+            path: "/transaction",
             element:<CheckAuth>
-              <Home/>
+              <ButtonAppBar><Home/></ButtonAppBar>
             </CheckAuth>
         },
         {
+          path:"/dashboard",
+          element:<CheckAuth><ButtonAppBar><Dashboard/></ButtonAppBar></CheckAuth>
+        },
+        {
           path:"/login",
-          element: <Guest><Login/></Guest>
+          element: <Guest><AppBar/><Login/></Guest>
         },{
             path:"/register",
-            element: <Guest><RegisterUser/></Guest>
+            element: <Guest><AppBar/><RegisterUser/></Guest>
         },{
           path:"/category",
-          element:<CheckAuth><Category/></CheckAuth>
+          element:<CheckAuth><ButtonAppBar><Category/></ButtonAppBar></CheckAuth>
         },{
           path:"/analysis",
-          element:<CheckAuth><Chart/></CheckAuth>
+          element:<CheckAuth><ButtonAppBar><Chart/></ButtonAppBar></CheckAuth>
         }
       ]
     },

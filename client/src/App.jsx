@@ -1,11 +1,11 @@
+import './App.css'; // Import the CSS file for styling
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
-import AppBar from "./components/ButtonAppBar";
+import ButtonAppBar from "./components/ButtonAppBar.jsx";
 import { getUser } from "./slice/authSlice.js";
 import { useLocation } from 'react-router-dom';
-import backgroundImage from '../public/Untitled.jpeg';
 
 function App() {
   const token = Cookies.get("token");
@@ -41,10 +41,9 @@ function App() {
   }
 
   return (
-    <div  className={isAuthPage ? 'background-image' : ''}>
-      <AppBar />
-      <Outlet />
-    </div>
+      <div className='hello'>
+        <Outlet />
+      </div>
   );
 }
 

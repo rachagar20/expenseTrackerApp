@@ -41,10 +41,10 @@ export default function Category() {
     return (
         <Container>
             <CategoryForm  setEditCategory={setEditCategory} editCategory={editCategory}/>
-            <Typography variant="h6" sx={{ marginTop: 10 }}>
-                List Of Categories
+            <Typography className="text" variant="h6" sx={{ marginTop: 10,textAlign:"center" }}>
+                LIST OF ALL CATEGORIES
             </Typography>
-            <TableContainer sx={{ marginTop: 10,border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#FCF6F9"}} component={Paper}>
+            <TableContainer sx={{ marginTop: 5,border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc",marginBottom:5}} component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>

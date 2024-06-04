@@ -81,7 +81,7 @@ function Login() {
       const { token, user } = result;
       Cookies.set("token", token);
       dispatch(getUser(user));
-      navigate("/");
+      navigate("/dashboard");
       console.log("USER SIGNED IN!!!");
     } else {
       if (emailRef.current) emailRef.current.value = '';
@@ -91,7 +91,7 @@ function Login() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main"  className="background-image" maxWidth="xs" sx={{paddingTop:"5%"}} >
       <CssBaseline />
       <ToastContainer/>
       <Box

@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from 'react-chartjs-2';
-import { Box, Grid, Card } from "@mui/material";
-
+import { Box, Grid, Card, Typography } from "@mui/material";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -26,17 +25,25 @@ ChartJS.register(
     ArcElement
 );
 
-const LineChart = ({ transactionDetails }) => {
+const LineChartDash= ({ transactionDetails }) => {
+    const now = dayjs();
+    const currentMonth = now.month();
+    const currentYear = now.year();
 
-    const incomeData = transactionDetails
+    // Filter transactions for the current month
+    const monthlyTransactions = transactionDetails.filter(transaction => {
+        const transactionDate = dayjs(transaction.date);
+        return transactionDate.year() === currentYear && transactionDate.month() === currentMonth;
+    });
 
+    const incomeData = monthlyTransactions
         .filter(item => item.typeOfTrans === "income")
         .map(eachTransactionObject => ({
             date: dayjs(eachTransactionObject.date).format("DD-MM-YYYY"),
             amount: eachTransactionObject.amount
         }));
 
-    const expenseData = transactionDetails
+    const expenseData = monthlyTransactions
         .filter(item => item.typeOfTrans === "expense")
         .map(eachTransactionObject => ({
             date: dayjs(eachTransactionObject.date).format("DD-MM-YYYY"),
@@ -59,7 +66,6 @@ const LineChart = ({ transactionDetails }) => {
     const expensePoints = getDataPoints(expenseData, allDates);
 
     // Define dataset for the chart
-
     const totalData = {
         labels: allDates,
         datasets: [
@@ -79,30 +85,26 @@ const LineChart = ({ transactionDetails }) => {
             }
         ]
     };
+
     const chartOptions = {
         plugins: {
             responsive: true,
             title: {
                 display: true,
-                text: 'GRAPH REPRESENTING INCOME AND EXPENSES V/S DATE', // Set your desired title here
+                text: 'TRANSACTIONS FOR CURRENT MONTH', // Set your desired title here
                 font: {
                     size: 18, // Adjust the font size as needed
                     weight: 'bold', // Set font weight (optional)
-
                 },
             },
         },
     };
 
     return (
-        <Card sx={{ marginTop: 10, border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc", width: "80%" }}>
-            <Grid container spacing={2} alignItems="center">
-                <Grid item xs>
+        <Card sx={{ border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc",width: "100%" }}>
                     <Line data={totalData} options={chartOptions} />
-                </Grid>
-            </Grid>
         </Card>
     );
 };
 
-export default LineChart;
+export default LineChartDash;
