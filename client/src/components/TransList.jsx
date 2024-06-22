@@ -23,7 +23,7 @@ export default function TransList({fetchTransactions, setEditTransaction }) {
     console.log(transactions)
     async function remove(_id) {
         if (!window.confirm("Are you sure?")) return;
-        const res = await fetch(`http://localhost:3000/transaction/${_id}`, {
+        const res = await fetch(`${import.meta.env.VITE_URL}/transaction/${_id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}`

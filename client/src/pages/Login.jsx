@@ -67,7 +67,7 @@ function Login() {
       email: data.get('email'),
       password: data.get('password'),
     };
-    const res = await fetch("http://localhost:3000/auth/login", {
+    const res = await fetch(`${import.meta.env.VITE_URL}/auth/login`, {
       method: "POST",
       body: JSON.stringify(form),
       headers: {

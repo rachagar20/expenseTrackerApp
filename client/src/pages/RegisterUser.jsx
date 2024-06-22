@@ -37,7 +37,7 @@ function SignUp() {
       firstName:data.get('firstName'),
       lastName:data.get('lastName')
     };
-    const res=await fetch("http://localhost:3000/auth/register",{
+    const res=await fetch(`${import.meta.env.VITE_URL}/auth/register`,{
         method:"POST",
         body:JSON.stringify(form),
         headers:{

@@ -21,7 +21,7 @@ export default function Category() {
     const dispatch=useDispatch()
     const [editCategory,setEditCategory]=React.useState({})
     const deleteLabel=async (id)=>{
-        const res=await fetch(`http://localhost:3000/category/${id}`,{
+        const res=await fetch(`${import.meta.env.VITE_URL}/category/${id}`,{
             method:"DELETE",
             headers:{
                 Authorization:`Bearer ${token}`

@@ -46,7 +46,7 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
     }
 
     async function update() {
-        const res = await fetch(`http://localhost:3000/transaction/${editTransaction._id}`, {
+        const res = await fetch(`${import.meta.env.VITE_URL}/transaction/${editTransaction._id}`, {
             method: "PATCH",
             body: JSON.stringify(form),
             headers: {
@@ -54,11 +54,12 @@ export default function TransForm({ fetchTransactions, editTransaction, setEditT
                 "Authorization": `Bearer ${token}`
             }
         });
+        if(res.ok) setEditTransaction({});
         reload(res);
     }
 
     async function create() {
-        const res = await fetch("http://localhost:3000/transaction", {
+        const res = await fetch(`${import.meta.env.VITE_URL}/transaction`, {
             method: "POST",
             body: JSON.stringify(form),
             headers: {

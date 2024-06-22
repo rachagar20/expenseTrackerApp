@@ -20,7 +20,7 @@ const Chart = () => {
     }
     async function fetchTransactions() {
         const token = Cookies.get("token");
-        const response = await fetch("http://localhost:3000/transaction", {
+        const response = await fetch(`${import.meta.env.VITE_URL}/transaction`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`

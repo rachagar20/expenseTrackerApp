@@ -18,7 +18,7 @@ function App() {
 
   async function fetchUser() {
     setIsLoading(true);
-    const res = await fetch(`http://localhost:3000/user`, {
+    const res = await fetch(`${import.meta.env.VITE_URL}/user`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

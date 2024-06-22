@@ -25,7 +25,7 @@ const items = [
     title: 'Customize Categories',
     description:
       'Easily tailor or customize your expense categories to suit your unique financial habits, ensuring precise tracking and personalized insights into your spending patterns.Also allows to edit or delete categories.',
-    imageLight: "url('../../../public/category.jpg')",
+    imageLight: "url('../../../category.jpg')",
   },
   {
     title: 'Analyse Expenses',
