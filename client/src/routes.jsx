@@ -14,7 +14,6 @@ import Dashboard from './pages/DashBoard'
 import  ButtonAppBar  from './components/ButtonAppBar.jsx'
 import AppBar from './components/AppBar.jsx'
 const token=Cookies.get("token")
-console.log(token)
 const router = createBrowserRouter([
     {
       element: <App />,

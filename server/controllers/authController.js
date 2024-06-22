@@ -18,7 +18,6 @@ export const registerUser=async (req,res)=>{
     const saltRounds=10;
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(password, salt);
-    console.log(hashedPassword)
     const createdUser=await User.create({email,password:hashedPassword,firstName,lastName,categories});
     res.status(201).json({message:
         "User is created Successfully."
@@ -45,7 +44,6 @@ export const loginUser=async(req,res)=>{
         id:user._id
     }
     const token=jwt.sign({payload},process.env.JWT_SECRET)
-    console.log(process.env.JWT_SECRET)
 
     res.json({message:"User Signed In Successfully",token,user});
 

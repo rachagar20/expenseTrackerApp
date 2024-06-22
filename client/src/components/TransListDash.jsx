@@ -19,7 +19,6 @@ import { useSelector } from 'react-redux';
 export default function TransListDash({transactions}) {
     const token = Cookies.get("token")
     const user = useSelector((state) => state.auth.user)
-    console.log(transactions)
     function formatDate(date) {
         return dayjs(date).format("DD MMM YYYY")
     }
@@ -28,9 +27,7 @@ export default function TransListDash({transactions}) {
         return category ? category.label : "--"
 
     }
-    console.log(new Date(transactions[0]?.updatedAt))
     const newTransactions=transactions.filter(transaction => transaction.updatedAt || transaction.createdAt).sort((a,b)=>new Date(b?.updatedAt)-new Date(a?.updatedAt)).slice(0,5)
-    console.log(newTransactions)
     return (
         <>
 

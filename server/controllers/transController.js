@@ -1,6 +1,5 @@
 import {Transaction} from "../model/transaction_model.js"
 export const getTransactionDetails=async(req,res)=>{
-    console.log(req.user)
     const transactionDetails=await Transaction.find({user_id:req.user._id});
     res.status(200).json(transactionDetails);
 }

@@ -15,8 +15,8 @@ export default function LandingPage() {
         <>
       <AppAppBar />
       <Hero />
-      <Container sx={{ display:"flex",justifyContent:"center" ,backgroundColor:"inherit"}}>
-      <Box sx={{ bgcolor: 'background.default', width:"99%", marginBottom:10, borderRadius:"20px"}}>
+      <Container>
+      <Box sx={{ bgcolor: 'background.default',marginTop:10, marginBottom:10, borderRadius:"20px"}}>
         <Features />
       </Box>
       </Container>

@@ -56,6 +56,7 @@ export default function Dashboard() {
                 boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)",
                 borderRadius: '12px',
                 fontSize: '1rem',
+                marginBottom:"10px"
               }} className="text">
                 Total Expenses:
                 <p style={{ fontSize: '1.2rem', fontWeight: 800, color: 'rgb(226, 64, 64)' }}>₹{totalValues[0]}</p>
@@ -70,6 +71,7 @@ export default function Dashboard() {
                 boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)",
                 borderRadius: '12px',
                 fontSize: '1rem',
+                marginBottom:"10px"
               }} className="text">
                 Total Income
                 <p style={{ fontSize: '1.2rem', fontWeight: 800, color: 'rgb(92, 212, 92)' }}>₹{totalValues[1]}</p>
@@ -83,6 +85,8 @@ export default function Dashboard() {
                 boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)",
                 borderRadius: '12px',
                 fontSize: '1rem',
+                marginBottom:"10px"
+
               }} className="text">
                 Total Balance
                 {

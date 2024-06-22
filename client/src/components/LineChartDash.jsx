@@ -87,8 +87,9 @@ const LineChartDash= ({ transactionDetails }) => {
     };
 
     const chartOptions = {
+        maintainAspectRatio:false,
+        responsive:true,
         plugins: {
-            responsive: true,
             title: {
                 display: true,
                 text: 'TRANSACTIONS FOR CURRENT MONTH', // Set your desired title here
@@ -102,7 +103,9 @@ const LineChartDash= ({ transactionDetails }) => {
 
     return (
         <Card sx={{ border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc",width: "100%" }}>
+                    <div className="canvas-container">
                     <Line data={totalData} options={chartOptions} />
+                    </div>
         </Card>
     );
 };

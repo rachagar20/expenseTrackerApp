@@ -20,7 +20,6 @@ export default function TransList({fetchTransactions, setEditTransaction }) {
     const token = Cookies.get("token")
     const user = useSelector((state) => state.auth.user)
     const transactions=useSelector((state)=>state.trans.transactionDetail);
-    console.log(transactions)
     async function remove(_id) {
         if (!window.confirm("Are you sure?")) return;
         const res = await fetch(`${import.meta.env.VITE_URL}/transaction/${_id}`, {

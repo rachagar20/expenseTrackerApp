@@ -2,6 +2,7 @@ import React from "react";
 import { Pie } from 'react-chartjs-2';
 import { useSelector } from "react-redux";
 import { Box, Card, Grid } from "@mui/material";
+import "../App.css"
 import {
     Chart as ChartJS,
     Tooltip,
@@ -62,8 +63,9 @@ const PieChart = ({ transactionDetails }) => {
         ],
     }
     const optionsExpense = {
+        maintainAspectRatio:false,
+        resposive:true,
         plugins: {
-            responsive: true,
             title: {
                 display: true,
                 text: 'EXPENSE FOR DIFFERENT CATEGORIES',
@@ -84,8 +86,8 @@ const PieChart = ({ transactionDetails }) => {
         ],
     }
     const optionsIncome = {
-        plugins: {
-            responsive: true,
+        maintainAspectRatio:false,
+        plugins: {            
             title: {
                 display: true,
                 text: 'INCOME FOR DIFFERENT CATEGORIES',
@@ -97,18 +99,22 @@ const PieChart = ({ transactionDetails }) => {
         },
     };
     return (
-        <Box sx={{ width: "90%", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-            <Card sx={{ marginTop: 10, border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc", width: "40%" }}>
+        <Box sx={{ width: "90%", display: "flex", justifyContent: "space-around", alignItems: "center", flexDirection:{xs:"column", md:"row"}}}>
+            <Card sx={{ marginTop: 10, border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc", width: {xs:"100%",md:"40%"} }}>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs>
+                    <div className="canvas-container">
                         <Pie options={optionsExpense} data={pieChartDataExpense} />
+                    </div>
                     </Grid>
                 </Grid>
             </Card>
-            <Card sx={{ marginTop: 10, border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc", width: "40%" }}>
+            <Card sx={{ marginTop: 10, border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc", width: {xs:"100%",md:"40%"}}}>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs>
+                        <div className="canvas-container">
                         <Pie options={optionsIncome} data={pieChartDataIncome} />
+                        </div>
                     </Grid>
                 </Grid>
             </Card>

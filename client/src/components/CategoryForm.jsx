@@ -32,9 +32,7 @@ export default function CategoryForm({setEditCategory,editCategory}) {
 
 
     async function reload(res){
-        console.log(editCategory)
         if(res.ok){
-            console.log(234)
             const userNew=await res.json();
             dispatch(getUser({user:userNew.user}));
             setForm(initialFormState)
@@ -49,6 +47,7 @@ export default function CategoryForm({setEditCategory,editCategory}) {
                 "Authorization": `Bearer ${token}`
             }
         });
+        setEditCategory({})
         reload(res);
     }
 

@@ -14,6 +14,7 @@ import Cookies from "js-cookie"
 import { ToastContainer,toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from '../components/main/Footer';
 
 function Copyright(props) {
   return (
@@ -53,14 +54,14 @@ function SignUp() {
     if(res.ok){
       Cookies.set("token",token);
       navigate("/login",{ state: { fromRegister:true } })
-      console.log("USER CREATED");
     }else{
       notify(message)
     }
   };
 
   return (
-      <Container component="main" className="background-image" maxWidth="xs" sx={{paddingTop:"5%"}} >
+      <>
+      <Container component="main" className="background-image" maxWidth="xs" sx={{paddingTop:"4%" ,minHeight: '84vh'}} >
         <CssBaseline />
         <ToastContainer/>
         <Box
@@ -141,8 +142,9 @@ function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
+      <Footer/>
+      </>
   );
 }
 export default SignUp;

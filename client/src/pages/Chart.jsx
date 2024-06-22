@@ -38,9 +38,10 @@ const Chart = () => {
           notify();
         } 
     }, [])
-    return  <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',marginBottom:5 }}>
+    return  <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',marginBottom:5}}>
           <ToastContainer/>
 
+  
     <LineChart transactionDetails={transactionDetails}/>
     <PieChart transactionDetails={transactionDetails}/>
     <BarChart transactionDetails={transactionDetails}/>

@@ -1,35 +1,11 @@
 import React from "react";
 import { Line } from 'react-chartjs-2';
-import { Box, Grid, Card } from "@mui/material";
-
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    PointElement,
-    LineElement,
-    LinearScale,
-    Title,
-    Tooltip,
-    Legend,
-    ArcElement
-} from "chart.js"
+import { Card, Grid } from "@mui/material";
 import dayjs from "dayjs";
-
-ChartJS.register(
-    CategoryScale,
-    PointElement,
-    LineElement,
-    LinearScale,
-    Title,
-    Tooltip,
-    Legend,
-    ArcElement
-);
 
 const LineChart = ({ transactionDetails }) => {
 
     const incomeData = transactionDetails
-
         .filter(item => item.typeOfTrans === "income")
         .map(eachTransactionObject => ({
             date: dayjs(eachTransactionObject.date).format("DD-MM-YYYY"),
@@ -59,7 +35,6 @@ const LineChart = ({ transactionDetails }) => {
     const expensePoints = getDataPoints(expenseData, allDates);
 
     // Define dataset for the chart
-
     const totalData = {
         labels: allDates,
         datasets: [
@@ -79,26 +54,30 @@ const LineChart = ({ transactionDetails }) => {
             }
         ]
     };
+
+    // Chart options for responsiveness
     const chartOptions = {
+        maintainAspectRatio: false,
         plugins: {
-            responsive: true,
             title: {
                 display: true,
-                text: 'GRAPH REPRESENTING INCOME AND EXPENSES V/S DATE', // Set your desired title here
+                text: 'GRAPH REPRESENTING INCOME AND EXPENSES V/S DATE',
                 font: {
-                    size: 18, // Adjust the font size as needed
-                    weight: 'bold', // Set font weight (optional)
-
-                },
-            },
+                    size: 18,
+                    weight: 'bold',
+                }
+            }
         },
+        responsive: true,
     };
 
     return (
         <Card sx={{ marginTop: 10, border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc", width: "80%" }}>
             <Grid container spacing={2} alignItems="center">
                 <Grid item xs>
-                    <Line data={totalData} options={chartOptions} />
+                    <div className="canvas-container">
+                        <Line data={totalData} options={chartOptions} />
+                    </div>
                 </Grid>
             </Grid>
         </Card>

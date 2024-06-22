@@ -77,6 +77,7 @@ const BarChart = ({ transactionDetails }) => {
                 },
             },
         },
+        maintainAspectRatio:false,
         responsive: true,
         scales: {
             x: {
@@ -100,7 +101,10 @@ const BarChart = ({ transactionDetails }) => {
             <Card sx={{ marginTop: 10, border: '2px solid #FFFFFF', boxShadow: "0px 1px 15px rgba(5, 5, 5, 0.15)", borderRadius: '12px', background: "#f7f9fc", width: "90%" }}>
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs>
+                        <div className="canvas-container">
                         <Bar options={options} data={barChartData} />
+
+                        </div>
                     </Grid>
                 </Grid>
             </Card>

@@ -29,7 +29,6 @@ export default function Category() {
         })
         if(res.ok){
             const {user}=await res.json();
-            console.log(user);
             dispatch(getUser({user:user}));
         }
         

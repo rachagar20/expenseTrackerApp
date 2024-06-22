@@ -23,10 +23,8 @@ function App() {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(res)
     if (res.ok) {
       const user = await res.json();
-      console.log(user)
       dispatch(getUser(user));
     }
     setIsLoading(false);

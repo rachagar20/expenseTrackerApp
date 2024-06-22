@@ -5,7 +5,6 @@ import MuiAppBar from '@mui/material/AppBar';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -81,20 +80,20 @@ export default function Dashboard({ children }) {
         navigate("/login");
     }
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ width: "100%", display: 'flex', justifyContent: "space-around" }}>
             <CssBaseline />
             <AppBar position="absolute" open={open}
                 sx={{
                     boxShadow: 0,
                     bgcolor: 'transparent',
                     backgroundImage: 'none',
-                    mt:1
+                    mt: 1
                 }}>
-                <Container maxWidth="lg">
+                <Container sx={{ width: "100%" }}>
 
                     <Toolbar
                         variant="regular"
-                        sx={() => ({
+                        sx={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'space-between',
@@ -106,43 +105,46 @@ export default function Dashboard({ children }) {
                             border: '1px solid',
                             borderColor: 'divider',
                             boxShadow: `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`,
-                            pr: 24
-                        })}
+                            pr: 2, // Adjusted padding right to 2
+                            pl: 2, // Added padding left to 2
+                        }}
                     >
-                        {auth.isAuthorized && <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={toggleDrawer}
-                            sx={{
-                                marginRight: '36px',
-                                ...(open && { display: 'none' }),
-                            }}
-                            style={{color:"primary"}}
-                        >
-                            <MenuIcon  color="primary"/>
-                        </IconButton>}
+                        {auth.isAuthorized && (
+                            <IconButton
+                                edge="start"
+                                color="inherit"
+                                aria-label="open drawer"
+                                onClick={toggleDrawer}
+                                sx={{
+                                    marginRight: 2,
+                                    ...(open && { display: 'none' }),
+                                }}
+                            >
+                                <MenuIcon color="primary" />
+                            </IconButton>
+                        )}
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            <Link to="/"  className="textColor">
+                            <Link to="/" className="textColor">
                                 MyExpensePilot
                             </Link>
                         </Typography>
-                        {
-                            auth.isAuthorized && <>
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            {auth.isAuthorized && (
                                 <Button color="primary" onClick={logout}>LOGOUT</Button>
-                            </>
-                        }
-                        {
-                            !auth.isAuthorized && <>
-                                <Link to="/login" className="textWhite">
-                                    <Button color="primary">LOGIN</Button>
-                                </Link>
-                                <Link to="/register" className="textWhite">
-                                    <Button color="primary">SIGNUP</Button>
-                                </Link>
-                            </>
-                        }
+                            )}
+                            {!auth.isAuthorized && (
+                                <>
+                                    <Link to="/login" className="textWhite">
+                                        <Button color="primary">LOGIN</Button>
+                                    </Link>
+                                    <Link to="/register" className="textWhite">
+                                        <Button color="primary">SIGNUP</Button>
+                                    </Link>
+                                </>
+                            )}
+                        </Box>
                     </Toolbar>
+
                 </Container>
             </AppBar>
             {auth.isAuthorized && <Drawer variant="permanent" open={open}>

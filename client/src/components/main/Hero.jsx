@@ -13,7 +13,6 @@ export default function Hero() {
       id="hero"
       sx={{
         width: '100%',
-        backgroundImage:'linear-gradient(180deg, #CEE5FD, #FFF)',
         backgroundSize: '100% 20%',
         backgroundRepeat: 'no-repeat',
       }}

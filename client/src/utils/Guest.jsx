@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 const Guest=({children})=>{
     const token=Cookies.get("token");
     const auth=useSelector((state)=>state.auth)
-    console.log(auth.isAuthorized)
     return !auth.isAuthorized?children:<Navigate to="/dashboard" replace={true}/>
 }
 export default Guest
