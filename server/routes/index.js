@@ -5,7 +5,7 @@ import authRouter from "./authRoute.js"
 import userRouter from "./userRoute.js"
 import categoryRouter from "./categoryRoute.js"
 import passport from "passport";
-router.use("/",(req,res)=>{
+router.use("/newPath",(req,res)=>{
     res.send("HELLO")
 })
 router.use("/transaction",passport.authenticate("jwt",{session:false}),transactionRouter)
