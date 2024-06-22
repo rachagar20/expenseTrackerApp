@@ -13,26 +13,26 @@ const items = [
     title: 'Dashboard',
     description:
       'Incorporated with a dashboard which provides a comprehensive snapshot of your finances, featuring monthly charts, recent transactions, and total income and expenses at a glance',
-    imageLight: "url('../../../public/dashboard.jpg')",
+    imageLight: "url('dashboard.jpg')",
   },
   {
     title: 'Add Transactions',
     description:
     "Add transactions seamlessly with our intuitive interface, ensuring every purchase is accounted for and effortlessly integrated into your financial overview.Also allows deletion and updation of previous transactions",
-    imageLight: "url('../../../public/dashboard.jpg')",
+    imageLight: "url('transaction.jpg')",
   },
   {
     title: 'Customize Categories',
     description:
       'Easily tailor or customize your expense categories to suit your unique financial habits, ensuring precise tracking and personalized insights into your spending patterns.Also allows to edit or delete categories.',
-    imageLight: "url('../../../category.jpg')",
+    imageLight: "url('category.jpg')",
   },
   {
     title: 'Analyse Expenses',
     description:
       'Unlock deeper insights into your spending habits with dynamic Charts, including Line,Pie, and Bar charts, allowing you to visualize and understand your expenses at a glance.',
     imageLight: 'url("/static/images/templates/templates-images/devices-light.png")',
-    imageLight: "url('../../../public/analysis.jpg')",
+    imageLight: "url('analysis.jpg')",
   },
 ];
 
