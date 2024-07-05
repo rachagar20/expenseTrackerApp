@@ -21,7 +21,9 @@ passportConfig(passport);
 
 // Routes
 app.use('/', router);
-
+app.get("/",(req,res)=>{
+  res.send ("HELLO")
+})
 // Connect to MongoDB
 connectMongoDB();
 
